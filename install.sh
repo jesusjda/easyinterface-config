@@ -22,7 +22,7 @@ if [ -f "$EI_HOME/clients/web/webclient.cfg" ] ; then
 fi
 
 
-#cp $PWD/server.cfg $EI_HOME/server/config/eiserver.cfg
-#cp $PWD/web.cfg $EI_HOME/clients/web/webclient.cfg
+cp $PWD/server.cfg $EI_HOME/server/config/eiserver.cfg
+cp $PWD/web.cfg $EI_HOME/clients/web/webclient.cfg
 
 
