@@ -5,6 +5,7 @@
 ###
 
 EI_TMP=$1/_ei_tmp
+shift
 # execute envisage_settings.sh to set some environment variables needed by
 # costabs, etc.
 #
@@ -13,28 +14,10 @@ EI_TMP=$1/_ei_tmp
 
 PROGRAM=/home/friker/Systems/costa/costabs/src/interfaces/mhp/shell/mhp_shell
 
-# Decide the entry. If the user provide a single entry then use it,
-# otherwise use 'main'
-#
-entries=$(getparam "entries")
-numofentries=($entries)
-
-if [ ${#numofentries[@]} == 1 ]; then
-    entry="$entries"
-else
-    entry="main"
-fi
-
-# remove -entries and its arguments, we assume it is the first in the
-# command-line parameters
-#
-shift                      
-shift ${#numofentries[@]} 
-shift
-
 # Execute mh_shell, we add '-ei_version 2' to the parameters since now
-DEMO=2
-${PROGRAM} $entry $@ -ei_version 2 -dot $EI_TMP/graph.dot -highlight '/dev/null' &> /tmp/mhp.stderr
+
+
+${PROGRAM} $@ -ei_version 2 -dot $EI_TMP/graph.dot -highlight '/dev/null' &> /tmp/mhp.stderr
 
 
 
