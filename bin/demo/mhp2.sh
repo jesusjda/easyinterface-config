@@ -28,15 +28,18 @@ if [ $? == 0 ]; then
     echo "<eiout>"
     echo "<eicommands>"
     if [ -f $EI_TMP/graph.dot ]; then
-	sed -i -e "s/border=0,//g" $EI_TMP/graph.dot 
+	sed -i -e "s/border=0,//g" $EI_TMP/graph.dot
 	dot -Tsvg < $EI_TMP/graph.dot > $EI_TMP/graph.svg
-	echo "<printonconsole consoleid='Graph'>"
-	echo "<content format='svg'>"
-	echo "<svg width='1000pt' height='500pt' "
-	tail -n +8 $EI_TMP/graph.svg
-	echo "</content>"
-	echo "</printonconsole>"
-	echo ""
+###	CONTENT=`tail -n +7 $EI_TMP/graph.svg`
+
+		echo "<printonconsole consoleid='Graph'>"
+		echo "<content format='svg'>"
+		echo "<svg width='1000pt' height='500pt' "
+		tail -n +8 $EI_TMP/graph.svg
+		echo "</content>"
+		echo "</printonconsole>"
+		echo ""
+
     fi
     tail -n +4 /tmp/costabs/output.xml
 

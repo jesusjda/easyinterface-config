@@ -5,7 +5,11 @@ EI_TMP=$1/_ei_tmp
 . envisage/envisage_settings.sh
 . misc/parse_params.sh
 
-PROGRAM=/home/friker/Systems/costa/costabs/src/interfaces/mhp/shell/mhp_shell
+#export COSTABSHOME=/home/friker/Systems/costa/costabs
+
+PROGRAM=/home/friker/Systems/costa/costabs/src/interfaces/mhp/shell/mhp_shell 
 
 ${PROGRAM} $@ 
+
+
 
