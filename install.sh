@@ -37,16 +37,9 @@ done
 install_ei(){
     mkdir -p $EI_HOME
     git clone https://github.com/abstools/easyinterface.git $EI_HOME
-    echo "Alias /ei \"$EI_HOME\"\n\
+    echo "Alias /ei \""$EI_HOME"\"\n\
 \n\
-<Directory \"$EI_HOME\">\n\
-   Options FollowSymlinks MultiViews Indexes IncludesNoExec\n\
-   AllowOverride All\n\
-   Require all granted\n\
-</Directory>\n"
-    echo "Alias /ei \"$EI_HOME\"\n\
-\n\
-<Directory \"$EI_HOME\">\n\
+<Directory \""$EI_HOME"\">\n\
    Options FollowSymlinks MultiViews Indexes IncludesNoExec\n\
    AllowOverride All\n\
    Require all granted\n\
