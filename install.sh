@@ -43,10 +43,19 @@ install_ei(){
    Options FollowSymlinks MultiViews Indexes IncludesNoExec\n\
    AllowOverride All\n\
    Require all granted\n\
+</Directory>\n"
+    echo "Alias /ei \"$EI_HOME\"\n\
+\n\
+<Directory \"$EI_HOME\">\n\
+   Options FollowSymlinks MultiViews Indexes IncludesNoExec\n\
+   AllowOverride All\n\
+   Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/easyinterface-site.conf
     chmod -R 755 $EI_HOME
     a2ensite easyinterface-site
+    service apache2 reload
     a2enmod headers
+    service apache2 restart
 }
 if [ "$INSTALL_EI" == "true" ]; then
     install_ei
