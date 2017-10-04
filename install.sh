@@ -49,7 +49,7 @@ install_ei(){
     a2enmod headers
 }
 if [ "$INSTALL_EI" == "true" ]; then
-    sudo install_ei
+    install_ei
 fi
 
 
