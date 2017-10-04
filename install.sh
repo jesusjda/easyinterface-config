@@ -46,6 +46,7 @@ install_ei(){
    AllowOverride All\n\
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/easyinterface-site.conf
+    cat /etc/apache2/sites-available/easyinterface-site.conf
     chmod -R 755 $EI_HOME
     a2ensite easyinterface-site
     service apache2 reload
