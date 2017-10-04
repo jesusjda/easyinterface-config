@@ -35,10 +35,8 @@ done
 
 
 install_ei(){
-    echo $EI_HOME
     mkdir -p $EI_HOME
     git clone https://github.com/abstools/easyinterface.git $EI_HOME
-    echo "hi"$EI_HOME
     echo -e "Alias /ei \""$EI_HOME"\"\n\
 \n\
 <Directory \""$EI_HOME"\">\n\
@@ -46,7 +44,6 @@ install_ei(){
    AllowOverride All\n\
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/easyinterface-site.conf
-    cat /etc/apache2/sites-available/easyinterface-site.conf
     chmod -R 755 $EI_HOME
     a2ensite easyinterface-site
     service apache2 reload
