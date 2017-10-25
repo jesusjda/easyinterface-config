@@ -38,5 +38,7 @@ function preparse (){
 
 DATA=`curl -s http://cl2-informatik.uibk.ac.at/mercurial.cgi/TPDB/raw-file/3ce4bce287e1/Integer_Transition_Systems/From_AProVE_2014`
 printFolder $localP From_AProve_2014
+echo "<folder name='smt2'>"
 preparse $localP'/From_AProve_2014' $serverP'/From_AProve_2014' $DATA
+echo "</folder>"
 echo "</folder>"
