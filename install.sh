@@ -77,7 +77,7 @@ install_ei(){
 
 install_ex(){
     mkdir -p $EX_HOME
-    $examples $EX_HOME $EX_REMOTE
+    $examples $EX_HOME $EX_REMOTE > $basedir/config/examples_remote.cfg
     echo -e "Alias "$EX_REMOTE" \""$EX_HOME"\"\n\
 \n\
 <Directory \""$EX_HOME"\">\n\
