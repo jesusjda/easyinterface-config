@@ -11,7 +11,7 @@ function printFile(){
     extension="${filepath##*.}"
     filename=`basename $filepath`
     if [[ ! -f $localpath'/'$filename ]]; then
-	curl -u $source'/'$filename > $localpath'/'$filename
+	curl $source'/'$filename > $localpath'/'$filename
     fi
     echo '<file name="'$filename'" url="'$serverpath'/'$filename'" />'
 }
@@ -30,7 +30,7 @@ function preparse (){
     c=1
     for i in "${@:3}"; do
 	if (( $c % 3 == 0 )); then
-	    printFile http://cl2-informatik.uibk.ac.at/mercurial.cgi/TPDB/raw-file/3ce4bce287e1/Integer_Transition_Systems/From_AProVE_2014/  $localpath $serverpath $i
+	    printFile http://cl2-informatik.uibk.ac.at/mercurial.cgi/TPDB/raw-file/3ce4bce287e1/Integer_Transition_Systems/From_AProVE_2014  $localpath $serverpath $i
 	fi
 	(( c++ ))
     done
