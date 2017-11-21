@@ -1,0 +1,56 @@
+.vars { 
+	i, j
+}
+
+.pvars {
+	i', j'
+}
+
+.trans t2 : n1 -> n3 {
+	i >= 0,
+	j >= 0,
+	i' = i,
+	j' = j
+}
+
+.trans t3 : n1 -> n4 {
+	i >= 0,
+	j >= 0,
+	i'=i,
+	j'=j
+}
+
+
+.trans t4 : n3 -> n3 {
+	j >= 0, i>=0,
+	j' = j-1,
+	i'=i
+}
+
+.trans t5 : n3 -> n4 {
+	j >= 0, i>=0,
+	j' = j,
+	i'=i
+}
+
+
+.trans t6 : n3 -> n4 {
+	j <= -1,
+	i >= 0,
+	i'=i,
+	j'=j
+}
+
+.trans t7 : n4 -> n4 {
+	j >= 0,
+	j' = j-1,
+	i >= 0,
+	i'=i
+}
+
+.trans t8 : n4 -> n1 {
+	j <= -1,
+	i >= 0,
+	i'=i-1,
+	j'=j
+}

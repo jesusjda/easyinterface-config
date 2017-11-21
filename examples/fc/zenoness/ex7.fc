@@ -1,0 +1,24 @@
+// one tank, from podelski's paper
+//
+
+.vars {
+x, y, clk, t 
+}
+
+.pvars {
+x', y', clk', t' 
+}
+
+.trans a1 : l1 -> l2 {
+ t'>=0, clk'=clk-t', clk>=0,
+ x>=0, y<=8, y>=0,
+ 8=y+t', x'=x-12*t',
+ y'=0
+}
+
+.trans a2 : l2 -> l1 {
+ t'>=0, clk'=clk-t', clk>=0,
+ x>=0, y<=10, y>=0,
+ 10=y+t', x'=x+8*t',
+ y'=0
+}
