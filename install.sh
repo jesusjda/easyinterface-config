@@ -6,6 +6,7 @@ basedir=$(dirname "$(readlink -f "$0" )")
 EX_HOME=~/tmp/examples
 EX_REMOTE=/tmp/examples
 examples=false
+EI_BR=master
 for i in "$@"; do
     case $i in
 	--ei-home=*)
@@ -14,6 +15,10 @@ for i in "$@"; do
 	    ;;
 	--install-ei)
 	    INSTALL_EI=true
+	    shift 
+	    ;;
+	--ei-branch=*)
+	    EI_BR="${i#*=}"
 	    shift 
 	    ;;
 	--examples=* )
@@ -40,6 +45,10 @@ ERROR: easyinterface-config/install.sh [OPTIONS]
     --install-ei )
         Install easyinterface with personal config.
 
+    --ei-branch=[NAME] )
+        Branch from where you want easyinterface installation
+        Default: master
+
     --examples=[PATH] )
         Script wich install examples
 
@@ -61,6 +70,7 @@ done
 install_ei(){
     mkdir -p $EI_HOME
     git clone https://github.com/abstools/easyinterface.git $EI_HOME
+    git checkout $EI_BR
     echo -e "Alias /ei \""$EI_HOME"\"\n\
 \n\
 <Directory \""$EI_HOME"\">\n\
