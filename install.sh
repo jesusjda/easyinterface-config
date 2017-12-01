@@ -70,9 +70,9 @@ done
 install_ei(){
     mkdir -p $EI_HOME
     git clone https://github.com/abstools/easyinterface.git $EI_HOME
-    popd $EI_HOME
+    pushd $EI_HOME
     git checkout $EI_BR
-    pushd
+    popd
     echo -e "Alias /ei \""$EI_HOME"\"\n\
 \n\
 <Directory \""$EI_HOME"\">\n\
