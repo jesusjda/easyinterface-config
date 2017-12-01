@@ -1,0 +1,12 @@
+.vars { 
+	x
+}
+
+.pvars {
+	x'
+}
+
+.trans t1 : a -> a{
+ 	x>=-1, 
+ 	x'=x-1
+ }

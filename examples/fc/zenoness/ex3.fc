@@ -1,0 +1,57 @@
+// contrived example of pavithra
+//
+//  we split s2 into two separated states
+//
+
+.vars {
+x, y, clk, t  
+}
+
+.pvars {
+x', y', clk', t'
+}
+
+.trans delta1 : s1 -> s2 {
+  clk>=0,
+  x>=0, x<=2,
+  y>=0, y<=1,
+  x'>=0, x'<=2,
+  y'>=0, y'<=1,
+
+  t'>=0,
+  clk'=clk-t',
+  x'=x+t',
+  y'=y+t',
+  
+  y'=1
+}
+
+.trans delta2 : s1 -> s2 {
+  clk>=0,
+  x>=0, x<=2,
+  y>=0, y<=1,
+  x'>=0, x'<=2,
+  y'>=0, y'<=1,
+
+  t'>=0,
+  clk'=clk-t',
+  x'=x+t',
+  y'=y+t',
+  
+  x'+y'=1
+}
+
+.trans delta3 : s2 -> s1 {
+  clk>=0,
+  x>=0, x<=2,
+  y>=0, y<=1,
+  x'>=0, x'<=2,
+  y'>=0, y'<=1,
+
+  t'>=0,
+  clk'=clk-t',
+  x'=x,
+  y'=y-t',
+  
+  y'=0
+}

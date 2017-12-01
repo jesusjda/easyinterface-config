@@ -1,4 +1,4 @@
-#!/bin/bash
+2#!/bin/bash
 TMPDIR=$1/_ei_tmp
 
 ${PYRANKFINDER_HOME:="/home/friker/Systems/pyRankFinder"}
@@ -34,7 +34,19 @@ echo ${@:2} --ei-out --dotDestination $TMPDIR/dot
 echo "ERRORS?"
 cat $TMPDIR/errors
 echo "]]></content></printonconsole>"
-echo "</eicommands>"
 
+${TRANS_HOME:="/usr/local/lib/python2.7/dist-packages/genericparser/smtpushdown2"}
+
+O=$($TRANS_HOME -convertto FC $3)
+echo "<printonconsole consoleid='translation' consoletitle='fccode'><content><![CDATA["
+echo "$O"
+echo "]]></content></printonconsole>"
+
+
+
+echo "<printonconsole><content><![CDATA["
+echo "]]></content></printonconsole>"
+
+echo "</eicommands>"
 
 echo "</eiout>"

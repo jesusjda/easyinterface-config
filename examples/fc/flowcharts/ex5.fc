@@ -1,0 +1,51 @@
+.vars { 
+x, y, m
+}
+
+.pvars {
+x', y', m'
+}
+
+
+/*
+.trans t2_1 : lbl4 -> stop {
+		x<= -1, x'=x, y'=y, m'=m,
+		m>=x, m>=y, y>=1
+}
+
+.trans t2_2 : lbl4 -> stop {
+		y<= -1, x'=x, y'=y, m'=m
+}
+*/
+
+.trans t3 : lbl4 -> lbl5 {
+	x>=0, y>=0, x'=x, y'=y, m'=m,
+		m>=x, m>=y
+}
+
+.trans t4 : lbl5 -> lbl6 {
+	x'=x, y'=y, m'=m,
+		x>=1, m>=x, m>=y, y>=1
+}
+
+.trans t5 : lbl5 -> lbl10 {
+	x'=x, y'=y, m'=m,
+		x>=0, m>=x, m>=y, y>=0
+}
+
+.trans t6 : lbl6 -> lbl6 {
+	y<=m, y'=y+1, x'=x, m'=m,
+			x>=0, m>=x,  y>=0
+	
+}
+
+.trans t7 : lbl6 -> lbl10 {
+	y'=y, x'=x-1, m'=m,
+			x>=0, m>=x, m+1>=y, y>=0
+}
+
+.trans t8 : lbl10 -> lbl4 {
+	y'=y-1, x'=x, m'=m,
+			x>= -1, m>=x, m+1>=y, y>=0, 2*m>=x+y
+}
+

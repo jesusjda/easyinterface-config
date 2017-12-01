@@ -1,0 +1,28 @@
+.vars {
+  x, y, n
+}
+
+
+  
+.initnode: n0
+  
+.trans t0 : n0 -> n1 {
+    x'=x,
+    y'=y,
+    n'=n,
+    x+y>=0
+}
+
+.trans t1 : n1 -> n1 {
+    x<=n,
+    x'>=2*x+y,
+    y'>=y+1,
+    n'=n
+}
+
+.trans t2 : n1 -> n1 {
+    x<=n,
+    x'>=x+1,
+    y'=y,
+    n'=n
+}
