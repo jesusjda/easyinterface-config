@@ -101,7 +101,7 @@ install_ex(){
     a2ensite example-site
     service apache2 reload
     a2enmod headers
-    service apache2 restart
+    # service apache2 restart
 }
 if [ "$INSTALL_EI" == "true" ]; then
     install_ei
