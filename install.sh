@@ -6,7 +6,7 @@ basedir=$(dirname "$(readlink -f "$0" )")
 EX_HOME=~/tmp/examples
 EX_REMOTE=/tmp/examples
 examples=false
-EI_BR=master
+EI_BR="master"
 for i in "$@"; do
     case $i in
 	--ei-home=*)
@@ -70,7 +70,9 @@ done
 install_ei(){
     mkdir -p $EI_HOME
     git clone https://github.com/abstools/easyinterface.git $EI_HOME
+    popd $EI_HOME
     git checkout $EI_BR
+    pushd
     echo -e "Alias /ei \""$EI_HOME"\"\n\
 \n\
 <Directory \""$EI_HOME"\">\n\

@@ -35,7 +35,7 @@ echo "ERRORS?"
 cat $TMPDIR/errors
 echo "]]></content></printonconsole>"
 
-${TRANS_HOME:="/home/friker/Systems/pyParser/genericparser/smtpushdown2"}
+${TRANS_HOME:="/usr/local/lib/python2.7/dist-packages/genericparser/smtpushdown2"}
 
 O=$($TRANS_HOME -convertto FC $3)
 echo "<printonconsole consoleid='translation' consoletitle='fccode'><content><![CDATA["
