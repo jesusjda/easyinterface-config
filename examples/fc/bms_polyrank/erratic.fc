@@ -1,0 +1,36 @@
+.vars {
+  p, q, x, y, e, n, N
+}
+
+
+.initnode: n0
+  
+.trans t0 : n0 -> n1 {
+    x'=x,
+    y'=y,
+    n'=n,
+    p>=0, q>=1, x=0, y=0
+}
+
+.trans t1 : n1 -> n1 {
+       x + y <= N,
+       x + e - q <= x', x'<= x + e + q,
+       y + n - q <= y', y'<= y + n + q,
+       n + e + 1 <= n'+ e', n'+e'<= n + e + p,
+       p'= p, q'= q, N'= N
+}
+
+.trans t2 : n1 -> n1 {
+       x + y <= N, n + e >= 2*q + 1,
+       x + e - q <= x', x'<= x + e + q,
+       y + n - q <= y', y'<= y + n + q,
+       n'= n, e'= e, p'= p, q'= q, N'= N
+}
+
+.trans t3 : n1 -> n1 {
+       p>=0,
+       n'+ e'<= -n - e,
+       p'= p - 1, 2*q'= q,
+       x'= x, y'= y, N'= N
+}
+
