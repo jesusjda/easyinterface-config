@@ -109,7 +109,7 @@ if [ "$INSTALL_EI" == "true" ]; then
     install_ei
 fi
 
-if [ "$example" != "false" ]; then
+if [ "$examples" != "false" ]; then
     install_ex
 fi
 
