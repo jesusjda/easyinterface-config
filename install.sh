@@ -100,7 +100,7 @@ install_ex(){
 </Directory>\n" > /etc/apache2/sites-available/example-site.conf
     chmod -R 755 $EX_HOME
     echo "RUN: \
-    a2ensite easyinterface-site \
+    a2ensite example-site \
     service apache2 reload \
     a2enmod headers \
     service apache2 restart"
@@ -113,6 +113,7 @@ if [ "$example" != "false" ]; then
     install_ex
 fi
 
+echo "Link folders"
 
 if [ ! -L "$EI_HOME/server/config/jesusjda" ] ; then
 	ln -s $basedir/config $EI_HOME/server/config/jesusjda
@@ -132,7 +133,10 @@ if [ -f "$EI_HOME/clients/web/webclient.cfg" ] ; then
 fi
 RND=""
 
+echo "Moving config files"
+
 cp $basedir/server.cfg $EI_HOME/server/config/eiserver.cfg
 cp $basedir/web.cfg $EI_HOME/clients/web/webclient.cfg
 
+echo "Finished!"
 
