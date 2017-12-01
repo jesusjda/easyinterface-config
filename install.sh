@@ -81,10 +81,6 @@ install_ei(){
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/easyinterface-site.conf
     chmod -R 755 $EI_HOME
-    a2ensite easyinterface-site
-    # service apache2 reload
-    a2enmod headers
-    # service apache2 restart
 }
 
 install_ex(){
@@ -98,10 +94,6 @@ install_ex(){
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/example-site.conf
     chmod -R 755 $EX_HOME
-    a2ensite example-site
-    service apache2 reload
-    a2enmod headers
-    # service apache2 restart
 }
 if [ "$INSTALL_EI" == "true" ]; then
     install_ei
