@@ -81,7 +81,7 @@ install_ei(){
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/easyinterface-site.conf
     chmod -R 755 $EI_HOME
-    echo "RUN: \n\
+    echo -e "RUN: \n\
     \ta2ensite easyinterface-site \n\
     \tservice apache2 reload \n\
     \ta2enmod headers \n\
@@ -99,7 +99,7 @@ install_ex(){
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/example-site.conf
     chmod -R 755 $EX_HOME
-    echo "RUN: \n\
+    echo -e "RUN: \n\
     \ta2ensite example-site \n\
     \tservice apache2 reload \n\
     \ta2enmod headers \n\
