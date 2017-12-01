@@ -11,15 +11,15 @@ for i in "$@"; do
     case $i in
 	--ei-home=*)
 	    EI_HOME="${i#*=}"
-	    shift 
+	    shift
 	    ;;
 	--install-ei)
 	    INSTALL_EI=true
-	    shift 
+	    shift
 	    ;;
 	--ei-branch=*)
 	    EI_BR="${i#*=}"
-	    shift 
+	    shift
 	    ;;
 	--examples=* )
 	    examples="${i#*=}"
@@ -34,7 +34,7 @@ for i in "$@"; do
 	    shift
 	    ;;
 	*)
-	    >&2 cat  <<EOF 
+	    >&2 cat  <<EOF
 ERROR: easyinterface-config/install.sh [OPTIONS]
 
 [OPTIONS]
@@ -81,11 +81,11 @@ install_ei(){
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/easyinterface-site.conf
     chmod -R 755 $EI_HOME
-    echo "RUN: \
-    a2ensite easyinterface-site \
-    service apache2 reload \
-    a2enmod headers \
-    service apache2 restart"
+    echo "RUN: \n\
+    \ta2ensite easyinterface-site \n\
+    \tservice apache2 reload \n\
+    \ta2enmod headers \n\
+    \tservice apache2 restart"
 }
 
 install_ex(){
@@ -99,11 +99,11 @@ install_ex(){
    Require all granted\n\
 </Directory>\n" > /etc/apache2/sites-available/example-site.conf
     chmod -R 755 $EX_HOME
-    echo "RUN: \
-    a2ensite example-site \
-    service apache2 reload \
-    a2enmod headers \
-    service apache2 restart"
+    echo "RUN: \n\
+    \ta2ensite example-site \n\
+    \tservice apache2 reload \n\
+    \ta2enmod headers \n\
+    \tservice apache2 restart"
 }
 if [ "$INSTALL_EI" == "true" ]; then
     install_ei
