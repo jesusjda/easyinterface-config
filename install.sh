@@ -84,7 +84,7 @@ install_ei(){
     a2ensite easyinterface-site
     service apache2 reload
     a2enmod headers
-    service apache2 restart
+    # service apache2 restart
 }
 
 install_ex(){
