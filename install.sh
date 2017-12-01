@@ -82,7 +82,7 @@ install_ei(){
 </Directory>\n" > /etc/apache2/sites-available/easyinterface-site.conf
     chmod -R 755 $EI_HOME
     a2ensite easyinterface-site
-    service apache2 reload
+    # service apache2 reload
     a2enmod headers
     # service apache2 restart
 }
