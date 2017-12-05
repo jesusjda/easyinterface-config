@@ -68,8 +68,10 @@ done
 
 
 install_ei(){
-    mkdir -p $EI_HOME
-    git clone https://github.com/abstools/easyinterface.git $EI_HOME
+    if [ ! -d $EI_HOME ]; then
+	mkdir -p $EI_HOME
+	git clone https://github.com/abstools/easyinterface.git $EI_HOME
+    fi
     pushd $EI_HOME
     git checkout $EI_BR
     popd
