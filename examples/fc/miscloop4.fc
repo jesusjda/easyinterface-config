@@ -1,0 +1,25 @@
+/*
+
+and example where we need different templates
+for LRF, and the only difference between these templates is the constant
+
+*/
+
+.vars {
+  x
+}
+
+.pvars {
+  x'
+}
+
+
+.trans t0 : n0 -> n1 {
+  x>=0,
+  x-x'>=1
+}
+
+.trans t1 : n1 -> n0 {
+  x>=0,
+  x-x'>=0
+}
