@@ -31,15 +31,15 @@ function preparse (){
     c=1
     for i in "${@:3}"; do
 	if (( $c % 3 == 0 )); then
-	    printFile http://cl2-informatik.uibk.ac.at/mercurial.cgi/TPDB/raw-file/3ce4bce287e1/Integer_Transition_Systems/From_T2  $localpath $serverpath $i
+	    printFile http://cl2-informatik.uibk.ac.at/mercurial.cgi/TPDB/raw-file/3ce4bce287e1/Integer_Transition_Systems/From_AProVE_2014  $localpath $serverpath $i
 	fi
 	(( c++ ))
     done
 }
 
-DATA=`curl -s http://cl2-informatik.uibk.ac.at/mercurial.cgi/TPDB/raw-file/3ce4bce287e1/Integer_Transition_Systems/From_T2`
-printFolder $localP From_T2
+DATA=`curl -s http://cl2-informatik.uibk.ac.at/mercurial.cgi/TPDB/raw-file/3ce4bce287e1/Integer_Transition_Systems/From_AProVE_2014`
+printFolder $localP From_AProVE_2014
 #echo "<folder name='smt2'>"
-preparse $localP'/From_T2' $serverP'/From_T2' $DATA
+preparse $localP'/From_AProVE_2014' $serverP'/From_AProVE_2014' $DATA
 #echo "</folder>"
 #echo "</folder>"
