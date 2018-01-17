@@ -8,7 +8,7 @@ mkdir -p $TMPDIR/dot
 mkdir -p $TMPDIR/t2
 echo "<eiout>"
 
-python2.7 $pyRF ${@:2} --ei-out --dotDestination $TMPDIR/dot 2> $TMPDIR/errors
+python3 $pyRF ${@:2} --ei-out --dotDestination $TMPDIR/dot 2> $TMPDIR/errors
 
 i=0
 echo "<eicommands>"
