@@ -11,17 +11,23 @@ while ( y != 0 ) {
   }
 }
 */
-#initnode : normal,
+initnode : normal,
 
-initnode : modified,
+# initnode : modified,
 
 
 transitions : [
 {name : init_normal, source : normal, target: n0, constraints: [
 ]},
 {name : t1, source : n0, target: n1, constraints: [
-
+y < 0,
+y' = y
 ]},
+{name : t11, source : n0, target: n1, constraints: [
+y > 0,
+y' = y
+]},
+
 {name : t2, source : n1, target: n2, constraints: [
 y < 0,
 y' = y
