@@ -1,25 +1,19 @@
-/*
-
-an example where we need different templates
-for LRF, and the only difference between these templates is the constant
-
-*/
-
-.vars {
-  x
-}
-
-.pvars {
-  x'
-}
-
-
-.trans t0 : n0 -> n1 {
-  x>=0,
-  x-x'>=1
-}
-
-.trans t1 : n1 -> n0 {
-  x>=0,
-  x-x'>=0
+{
+  vars: [x],
+  pvars: [x'],
+  initnode: n0,
+  transitions: [
+    {
+	source: n0,
+	target: n1,
+	name: t0,
+	constraints: [x >= 0, x - x' - 1 >= 0]
+    },
+    {
+	source: n1,
+	target: n0,
+	name: t1,
+	constraints: [x >= 0, x - x' >= 0]
+    }
+  ]
 }

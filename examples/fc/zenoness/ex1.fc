@@ -1,33 +1,19 @@
-//Example extracted from Fig 1 of the paper: 
-//Abstraction Refinement for Stability
-//by Parasara Sridhar Duggirala and Sayan Mitra
-
-
-.vars {
-x, y, clk, t
-}
-
-.pvars {
-x', y', clk', t'
-}
-
-.trans t1 : l0 -> l1 {
-t'>=0, clk>=0, clk'=clk-1,
-x>=0, x<=100, y>=0, y<=100,
-
-x'>=x+3*t', x'<=x+5*t',
-y'=y-t',
-
-y'<=10,
-x'>=40, x'<=50
-}
-
-.trans t2 : l1 -> l0 { 
-t'>=0, clk>=0, clk'=clk-1,
-x>=0, x<=100, y>=0, y<=100,
-
-x'=x-5*t',
-y'>=y+2*t', y'<=y+4*t',
-
-y'>=20, x'<=40
+{
+  vars: [x,y,clk,t],
+  pvars: [x',y',clk',t'],
+  initnode: l0,
+  transitions: [
+    {
+	source: l1,
+	target: l0,
+	name: t2,
+	constraints: [t' >= 0, clk >= 0, clk - clk' - 1 == 0, x >= 0,  - x + 100 >= 0, y >= 0,  - y + 100 >= 0, x - x' - 5 * t' == 0,  - y + y' - 2 * t' >= 0, y - y' + 4 * t' >= 0, y' - 20 >= 0,  - x' + 40 >= 0]
+    },
+    {
+	source: l0,
+	target: l1,
+	name: t1,
+	constraints: [t' >= 0, clk >= 0, clk - clk' - 1 == 0, x >= 0,  - x + 100 >= 0, y >= 0,  - y + 100 >= 0,  - x + x' - 3 * t' >= 0, x - x' + 5 * t' >= 0, y - y' - t' == 0,  - y' + 10 >= 0, x' - 40 >= 0,  - x' + 50 >= 0]
+    }
+  ]
 }

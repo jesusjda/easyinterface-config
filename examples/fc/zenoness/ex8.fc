@@ -1,24 +1,19 @@
-// bouncing ball, from podelski's paper
-//
-
-.vars {
-x, y, clk, t 
-}
-
-.pvars {
-x', y', clk', t' 
-}
-
-.trans a1 : l1 -> l2 {
- t'>=0, clk'=clk-t', clk>=0,
- x>=y, y>=0,
- x'=x-t', y'=y-2*t',
- y<=0
-}
-
-.trans a2 : l2 -> l1 {
- t'>=0, clk'=clk-t', clk>=0,
- x>=y, y>=0,
- x'=x-t', y'=y+2*t',
- x<=y
+{
+  vars: [x,y,clk,t],
+  pvars: [x',y',clk',t'],
+  initnode: l1,
+  transitions: [
+    {
+	source: l2,
+	target: l1,
+	name: a2,
+	constraints: [t' >= 0, clk - clk' - t' == 0, clk >= 0, x - y >= 0, y >= 0, x - x' - t' == 0, y - y' + 2 * t' == 0,  - x + y >= 0]
+    },
+    {
+	source: l1,
+	target: l2,
+	name: a1,
+	constraints: [t' >= 0, clk - clk' - t' == 0, clk >= 0, x - y >= 0, y >= 0, x - x' - t' == 0, y - y' - 2 * t' == 0,  - y >= 0]
+    }
+  ]
 }

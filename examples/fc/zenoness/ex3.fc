@@ -1,57 +1,25 @@
-// contrived example of pavithra
-//
-//  we split s2 into two separated states
-//
-
-.vars {
-x, y, clk, t  
-}
-
-.pvars {
-x', y', clk', t'
-}
-
-.trans delta1 : s1 -> s2 {
-  clk>=0,
-  x>=0, x<=2,
-  y>=0, y<=1,
-  x'>=0, x'<=2,
-  y'>=0, y'<=1,
-
-  t'>=0,
-  clk'=clk-t',
-  x'=x+t',
-  y'=y+t',
-  
-  y'=1
-}
-
-.trans delta2 : s1 -> s2 {
-  clk>=0,
-  x>=0, x<=2,
-  y>=0, y<=1,
-  x'>=0, x'<=2,
-  y'>=0, y'<=1,
-
-  t'>=0,
-  clk'=clk-t',
-  x'=x+t',
-  y'=y+t',
-  
-  x'+y'=1
-}
-
-.trans delta3 : s2 -> s1 {
-  clk>=0,
-  x>=0, x<=2,
-  y>=0, y<=1,
-  x'>=0, x'<=2,
-  y'>=0, y'<=1,
-
-  t'>=0,
-  clk'=clk-t',
-  x'=x,
-  y'=y-t',
-  
-  y'=0
+{
+  vars: [x,y,clk,t],
+  pvars: [x',y',clk',t'],
+  initnode: s1,
+  transitions: [
+    {
+	source: s1,
+	target: s2,
+	name: delta1,
+	constraints: [clk >= 0, x >= 0,  - x + 2 >= 0, y >= 0,  - y + 1 >= 0, x' >= 0,  - x' + 2 >= 0, y' >= 0,  - y' + 1 >= 0, t' >= 0, clk - clk' - t' == 0, x - x' + t' == 0, y - y' + t' == 0, y' - 1 == 0]
+    },
+    {
+	source: s2,
+	target: s1,
+	name: delta3,
+	constraints: [clk >= 0, x >= 0,  - x + 2 >= 0, y >= 0,  - y + 1 >= 0, x' >= 0,  - x' + 2 >= 0, y' >= 0,  - y' + 1 >= 0, t' >= 0, clk - clk' - t' == 0, x - x' == 0, y - y' - t' == 0, y' == 0]
+    },
+    {
+	source: s1,
+	target: s2,
+	name: delta2,
+	constraints: [clk >= 0, x >= 0,  - x + 2 >= 0, y >= 0,  - y + 1 >= 0, x' >= 0,  - x' + 2 >= 0, y' >= 0,  - y' + 1 >= 0, t' >= 0, clk - clk' - t' == 0, x - x' + t' == 0, y - y' + t' == 0, x' + y' - 1 == 0]
+    }
+  ]
 }

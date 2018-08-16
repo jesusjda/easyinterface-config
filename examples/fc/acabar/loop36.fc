@@ -1,16 +1,13 @@
-.vars {
-  x, y, z
+{
+  vars: [x,y,z],
+  pvars: [x',y',z'],
+  initnode: n,
+  transitions: [
+    {
+	source: n,
+	target: n,
+	name: t0,
+	constraints: [x - 1 >= 0,  - x + z >= 0, 2 * x + y - x' == 0, y - y' + 1 == 0, z - z' == 0]
+    }
+  ]
 }
-
-.pvars {
-  x', y', z'
-}
-
-.trans t0 : n -> n {
-  -1 * x <= -1,
-  1 * x + -1 * z <= 0,
-  -2 * x + -1 * y + 1 * x' = 0,
-  -1 * y + 1 * y' = 1,
-  -1 * z + 1 * z' = 0
-}
-

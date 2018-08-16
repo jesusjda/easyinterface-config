@@ -1,14 +1,13 @@
-.vars {
-  q, z
+{
+  vars: [q,z],
+  pvars: [q',z'],
+  initnode: n,
+  transitions: [
+    {
+	source: n,
+	target: n,
+	name: t0,
+	constraints: [q >= 0, q + z - q' - 1 == 0, z + z' == 0]
+    }
+  ]
 }
-
-.pvars {
-  q', z'
-}
-
-.trans t0 : n -> n {
-  -1 * q <= 0,
-  -1 * q + -1 * z + 1 * q' = -1,
-  1 * z + 1 * z' = 0
-}
-
