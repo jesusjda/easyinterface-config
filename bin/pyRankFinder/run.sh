@@ -34,9 +34,10 @@ done
 
 
 if [ -s "$TMPDIR/errors" ]; then
-    echo "<printonconsole consoleid='errors' consoletitle='ERRORS?'><content><![CDATA["
+    echo "<printonconsole consoleid='errors' consoletitle='Errors'><content><![CDATA["
+    echo "========== Command line ====================================="
     echo ${@:2} --ei-out --dotDestination "$TMPDIR/dot"
-    echo "ERRORS?"
+    echo "=============================================================="
     cat "$TMPDIR/errors"
     echo "]]></content></printonconsole>"
 fi
