@@ -1,6 +1,9 @@
-2#!/bin/bash
+#!/bin/bash
 TMPDIR=$1/_ei_tmp
 
+
+${HOME:="/var/www"}
+export HOME=$HOME
 ${PYRANKFINDER_HOME:="/home/friker/Systems/pyRankFinder"}
 pyRF=$PYRANKFINDER_HOME/rankfinder.py
 
@@ -8,11 +11,11 @@ mkdir -p $TMPDIR/dot
 mkdir -p $TMPDIR/t2
 echo "<eiout>"
 
-python3 $pyRF ${@:2} --ei-out --dotDestination $TMPDIR/dot 2> $TMPDIR/errors
+python3 $pyRF ${@:2} --ei-out --dotDestination "$TMPDIR/dot" 2> "$TMPDIR/errors"
 
 i=0
 echo "<eicommands>"
-for f in $TMPDIR/dot/*.dot
+for f in "$TMPDIR/dot/"*.dot
 do
     if [ -f $f ]; then
 	echo ""
@@ -29,24 +32,16 @@ do
     fi
 done
 
-echo "<printonconsole consoleid='errors' consoletitle='ERRORS?'><content><![CDATA["
-echo ${@:2} --ei-out --dotDestination $TMPDIR/dot
-echo "ERRORS?"
-cat $TMPDIR/errors
-echo "]]></content></printonconsole>"
 
-${TRANS_HOME:="/usr/local/lib/python2.7/dist-packages/genericparser/smtpushdown2"}
+if [ -s "$TMPDIR/errors" ]; then
+    echo "<printonconsole consoleid='errors' consoletitle='ERRORS?'><content><![CDATA["
+    echo ${@:2} --ei-out --dotDestination "$TMPDIR/dot"
+    echo "ERRORS?"
+    cat "$TMPDIR/errors"
+    echo "]]></content></printonconsole>"
+fi
 
-O=$($TRANS_HOME -convertto FC $3)
-echo "<printonconsole consoleid='translation' consoletitle='fccode'><content><![CDATA["
-echo "$O"
-echo "]]></content></printonconsole>"
-
-
-
-echo "<printonconsole><content><![CDATA["
-echo "]]></content></printonconsole>"
+echo "<printonconsole><content><![CDATA[]]></content></printonconsole>"
 
 echo "</eicommands>"
-
 echo "</eiout>"

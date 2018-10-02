@@ -9,6 +9,14 @@ pyRF=$PYRANKFINDER_HOME/CFRefinement.py
 
 echo "<eiout>"
 
+echo "<eicommands>"
+
+echo "<printonconsole><content><![CDATA["
+echo "Refined program file(s) added to the file manager."
+echo "]]></content></printonconsole>"
+
+echo "</eicommands>"
+
 python3 $pyRF --dir $TMPDIR ${@:2} --ei-out 2> $TMPDIR/errors
 
 
@@ -19,6 +27,7 @@ cat $TMPDIR/errors
 echo "]]></content></printonconsole>"
 
 echo "<printonconsole><content><![CDATA["
+echo "Refined program file(s) added to the file manager."
 echo "]]></content></printonconsole>"
 
 echo "</eicommands>"
