@@ -7,15 +7,16 @@ export HOME=$HOME
 ${PYRANKFINDER_HOME:="/home/friker/Systems/pyRankFinder"}
 pyRF=$PYRANKFINDER_HOME/rankfinder.py
 
-mkdir -p $TMPDIR/dot
-mkdir -p $TMPDIR/t2
+OUTSDIR=$TMPDIR/outs
+mkdir -p $OUTSDIR
+# mkdir -p $TMPDIR/t2
 echo "<eiout>"
 
-python3 $pyRF ${@:2} --ei-out --dotDestination "$TMPDIR/dot" 2> "$TMPDIR/errors"
+python3 $pyRF ${@:2} --ei-out -of dot fc svg -od "$OUTSDIR/" 2> "$TMPDIR/errors"
 
 i=0
 echo "<eicommands>"
-for f in "$TMPDIR/dot/"*.dot
+for f in "$OUTSDIR/"*.svg
 do
     if [ -f $f ]; then
 	echo ""
@@ -24,8 +25,9 @@ do
 	echo "]]></content></printonconsole>"
 	echo "<printonconsole consoleid='graph-dot' consoletitle='Program Graph'>"
 	echo "<content format='svg'>"
-	dot -Tsvg $f -o $f.svg
-	cat $f.svg | sed -e :a -re 's/<!.*?>//g;/<!/N;//ba'
+	cat $f
+	#dot -Tsvg $f -o $f.svg
+	#cat $f.svg | sed -e :a -re 's/<!.*?>//g;/<!/N;//ba'
 	echo "</content></printonconsole>"
 	echo ""
 	i=$i + 1
@@ -36,13 +38,12 @@ done
 if [ -s "$TMPDIR/errors" ]; then
     echo "<printonconsole consoleid='errors' consoletitle='Errors'><content><![CDATA["
     echo "========== Command line ====================================="
-    echo ${@:2} --ei-out --dotDestination "$TMPDIR/dot"
+    echo ${@:2} --ei-out -of dot fc svg -od "$OUTSDIR/"
     echo "=============================================================="
     cat "$TMPDIR/errors"
     echo "]]></content></printonconsole>"
+else
+    echo "<printonconsole><content><![CDATA[]]></content></printonconsole>"
 fi
-
-echo "<printonconsole><content><![CDATA[]]></content></printonconsole>"
-
 echo "</eicommands>"
 echo "</eiout>"
