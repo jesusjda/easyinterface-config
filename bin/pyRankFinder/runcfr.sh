@@ -5,7 +5,7 @@ TMPDIR=$1/_ei_tmp
 ${HOME:="/var/www"}
 export HOME=$HOME
 ${PYRANKFINDER_HOME:="/home/friker/Systems/pyRankFinder"}
-pyRF=$PYRANKFINDER_HOME/rankfinder.py
+pyRF=$PYRANKFINDER_HOME/CFRefinement.py
 
 OUTSDIR=$TMPDIR/outs
 mkdir -p $OUTSDIR
