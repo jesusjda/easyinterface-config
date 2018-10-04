@@ -14,27 +14,8 @@ echo "<eiout>"
 
 python3 $pyRF ${@:2} --ei-out -of dot fc svg -od "$OUTSDIR/" 2> "$TMPDIR/errors"
 
-i=0
+
 echo "<eicommands>"
-for f in "$OUTSDIR/"*.svg
-do
-    if [ -f $f ]; then
-	echo ""
-	echo "<printonconsole consoleid='graph-dot' consoletitle='Program Graph'><content><![CDATA["
-	echo $(basename $f)
-	echo "]]></content></printonconsole>"
-	echo "<printonconsole consoleid='graph-dot' consoletitle='Program Graph'>"
-	echo "<content format='svg'>"
-	cat $f
-	#dot -Tsvg $f -o $f.svg
-	#cat $f.svg | sed -e :a -re 's/<!.*?>//g;/<!/N;//ba'
-	echo "</content></printonconsole>"
-	echo ""
-	i=$i + 1
-    fi
-done
-
-
 if [ -s "$TMPDIR/errors" ]; then
     echo "<printonconsole consoleid='errors' consoletitle='Errors'><content><![CDATA["
     echo "========== Command line ====================================="

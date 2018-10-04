@@ -1,35 +1,32 @@
 #!/bin/bash
 TMPDIR=$1/_ei_tmp
 
+
 ${HOME:="/var/www"}
 export HOME=$HOME
-
 ${PYRANKFINDER_HOME:="/home/friker/Systems/pyRankFinder"}
-pyRF=$PYRANKFINDER_HOME/CFRefinement.py
+pyRF=$PYRANKFINDER_HOME/rankfinder.py
 
+OUTSDIR=$TMPDIR/outs
+mkdir -p $OUTSDIR
+# mkdir -p $TMPDIR/t2
 echo "<eiout>"
 
-echo "<eicommands>"
-
-echo "<printonconsole><content><![CDATA["
-echo "Refined program file(s) added to the file manager."
-echo "]]></content></printonconsole>"
-
-echo "</eicommands>"
-
-python3 $pyRF --dir $TMPDIR ${@:2} --ei-out 2> $TMPDIR/errors
+python3 $pyRF ${@:2} --ei-out -of dot fc svg -od "$OUTSDIR/" 2> "$TMPDIR/errors"
 
 
 echo "<eicommands>"
-
-echo "<printonconsole consoleid='errors' consoletitle='ERRORS?'><content><![CDATA["
-cat $TMPDIR/errors
-echo "]]></content></printonconsole>"
-
-echo "<printonconsole><content><![CDATA["
-echo "Refined program file(s) added to the file manager."
-echo "]]></content></printonconsole>"
-
+if [ -s "$TMPDIR/errors" ]; then
+    echo "<printonconsole consoleid='errors' consoletitle='Errors'><content><![CDATA["
+    echo "========== Command line ====================================="
+    echo ${@:2} --ei-out -of dot fc svg -od "$OUTSDIR/"
+    echo "=============================================================="
+    cat "$TMPDIR/errors"
+    echo "]]></content></printonconsole>"
+else
+    echo "<printonconsole><content><![CDATA["
+    echo "Refined program file(s) added to the file manager."
+    echo "]]></content></printonconsole>"
+fi
 echo "</eicommands>"
-
 echo "</eiout>"
